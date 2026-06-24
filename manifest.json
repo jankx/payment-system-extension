@@ -1,0 +1,17 @@
+{
+    "name": "Payment System",
+    "version": "1.0.0",
+    "description": "Core payment processing system with gateway abstraction, API auto-tracking, and IMAP email monitoring.",
+    "author": "Jankx",
+    "extension_id": "payment-system",
+    "context": ["admin", "frontend", "rest", "ajax"],
+    "caller": {
+        "file": "PaymentSystemExtension.php",
+        "class": "Jankx\\Extensions\\PaymentSystem\\PaymentSystemExtension",
+        "method": "init"
+    },
+    "requirements": {
+        "php": ">=7.4"
+    },
+    "auto_activate": true
+}
