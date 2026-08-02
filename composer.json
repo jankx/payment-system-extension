@@ -21,5 +21,11 @@
         "psr-4": {
             "Jankx\\Extensions\\PaymentSystem\\Tests\\": "tests/"
         }
+    },
+    "config": {
+        "vendor-dir": "libs",
+        "allow-plugins": {
+            "php-http/discovery": false
+        }
     }
 }
