@@ -65,7 +65,30 @@ class GatewayManager
     {
         $defaults = $this->getDefaultConfig($name);
         $saved = get_option("jankx_payment_gateway_{$name}", []);
-        return array_merge($defaults, $saved);
+        $merged = array_merge($defaults, $saved);
+
+        // Determine testMode from saved config
+        $isSandbox = !empty($merged['testMode']) && $merged['testMode'] === '1';
+        $merged['testMode'] = $isSandbox;
+
+        // Merge credentials based on mode
+        if ($isSandbox) {
+            if (!empty($merged['sandbox_api_key'])) {
+                $merged['apiKey'] = $merged['sandbox_api_key'];
+            }
+            if (!empty($merged['sandbox_api_secret'])) {
+                $merged['apiSecret'] = $merged['sandbox_api_secret'];
+            }
+        } else {
+            if (!empty($merged['production_api_key'])) {
+                $merged['apiKey'] = $merged['production_api_key'];
+            }
+            if (!empty($merged['production_api_secret'])) {
+                $merged['apiSecret'] = $merged['production_api_secret'];
+            }
+        }
+
+        return $merged;
     }
 
     public function getDefaultConfig(string $name): array
@@ -89,5 +112,31 @@ class GatewayManager
     public function hasGateway(string $name): bool
     {
         return isset($this->gateways[$name]);
+    }
+
+    /**
+     * Check if a gateway is in sandbox/test mode
+     */
+    public function isSandboxMode(string $name): bool
+    {
+        $config = $this->getConfig($name);
+        return !empty($config['testMode']);
+    }
+
+    /**
+     * Get all gateways with their sandbox status
+     */
+    public function getGatewayModes(): array
+    {
+        $modes = [];
+        foreach ($this->gateways as $name => $class) {
+            $modes[$name] = [
+                'is_sandbox' => $this->isSandboxMode($name),
+                'label' => $this->isSandboxMode($name)
+                    ? __('Sandbox', 'jankx')
+                    : __('Production', 'jankx'),
+            ];
+        }
+        return $modes;
     }
 }

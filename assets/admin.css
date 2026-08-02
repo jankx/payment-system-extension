@@ -1,0 +1,119 @@
+/* Jankx Payment System - Admin Styles */
+
+/* Gateway Mode Badge */
+.jankx-gateway-mode-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1;
+}
+
+.jankx-gateway-mode-badge.sandbox {
+    background: #FEF3C7;
+    color: #92400E;
+    border: 1px solid #FCD34D;
+}
+
+.jankx-gateway-mode-badge.production {
+    background: #D1FAE5;
+    color: #065F46;
+    border: 1px solid #6EE7B7;
+}
+
+/* Toggle Switch */
+.jankx-toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 26px;
+    cursor: pointer;
+}
+
+.jankx-toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.jankx-toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #D1D5DB;
+    border-radius: 26px;
+    transition: all 0.3s ease;
+}
+
+.jankx-toggle-slider::before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.jankx-toggle-switch input:checked + .jankx-toggle-slider {
+    background-color: #65A30D;
+}
+
+.jankx-toggle-switch input:checked + .jankx-toggle-slider::before {
+    transform: translateX(22px);
+}
+
+.jankx-toggle-switch input:focus + .jankx-toggle-slider {
+    box-shadow: 0 0 0 3px rgba(101, 163, 13, 0.2);
+}
+
+/* Toggle Password Button */
+.jankx-toggle-password {
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+/* Gateway Section */
+.form-table h2 {
+    margin-top: 24px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+/* Mode Warning */
+.jankx-mode-warning {
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin: 12px 0;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.jankx-mode-warning.sandbox {
+    background: #FFFBEB;
+    border: 1px solid #FCD34D;
+    color: #92400E;
+}
+
+.jankx-mode-warning.production {
+    background: #FEF2F2;
+    border: 1px solid #FCA5A5;
+    color: #991B1B;
+}
+
+/* Responsive */
+@media screen and (max-width: 782px) {
+    .jankx-gateway-mode-badge {
+        font-size: 10px;
+        padding: 3px 8px;
+    }
+}

@@ -124,6 +124,46 @@ class OmnipayGateway implements GatewayInterface
 
     public function getSettingsFields(): array
     {
-        return [];
+        $fields = [
+            [
+                'name' => 'testMode',
+                'label' => __('Sandbox Mode', 'jankx'),
+                'type' => 'toggle',
+                'description' => __('Enable sandbox/test mode for this gateway.', 'jankx'),
+            ],
+            [
+                'name' => 'sandbox_api_key',
+                'label' => __('Sandbox API Key', 'jankx'),
+                'type' => 'password',
+                'description' => __('API key for sandbox environment.', 'jankx'),
+                'required_mode' => 'sandbox',
+            ],
+            [
+                'name' => 'sandbox_api_secret',
+                'label' => __('Sandbox API Secret', 'jankx'),
+                'type' => 'password',
+                'description' => __('API secret for sandbox environment.', 'jankx'),
+                'required_mode' => 'sandbox',
+            ],
+            [
+                'name' => 'production_api_key',
+                'label' => __('Production API Key', 'jankx'),
+                'type' => 'password',
+                'description' => __('API key for production environment.', 'jankx'),
+                'required_mode' => 'production',
+            ],
+            [
+                'name' => 'production_api_secret',
+                'label' => __('Production API Secret', 'jankx'),
+                'type' => 'password',
+                'description' => __('API secret for production environment.', 'jankx'),
+                'required_mode' => 'production',
+            ],
+        ];
+
+        return apply_filters(
+            'jankx/payment/gateway/' . $this->gatewayName . '/settings_fields',
+            $fields
+        );
     }
 }

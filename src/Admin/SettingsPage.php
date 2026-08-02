@@ -144,23 +144,127 @@ class SettingsPage
     {
         do_action('jankx/payment/admin/gateway_settings_before');
 
+        $modes = $this->gatewayManager->getGatewayModes();
+
         foreach ($this->gatewayManager->getGatewayNames() as $name) {
             $gateway = $this->gatewayManager->get($name);
             if (!$gateway) {
                 continue;
             }
             $config = $this->gatewayManager->getConfig($name);
+            $isSandbox = $modes[$name]['is_sandbox'] ?? true;
+            $modeLabel = $modes[$name]['label'] ?? 'Sandbox';
             ?>
-            <h2><?php echo esc_html($gateway->getName()); ?></h2>
+            <h2 style="display: flex; align-items: center; gap: 10px;">
+                <?php echo esc_html($gateway->getName()); ?>
+                <span class="jankx-gateway-mode-badge <?php echo $isSandbox ? 'sandbox' : 'production'; ?>">
+                    <?php echo esc_html($modeLabel); ?>
+                </span>
+            </h2>
             <table class="form-table">
                 <?php foreach ($gateway->getSettingsFields() as $field): ?>
+                    <?php
+                    // Skip fields that don't apply to current mode
+                    if (isset($field['required_mode'])) {
+                        if ($field['required_mode'] === 'sandbox' && !$isSandbox) {
+                            continue;
+                        }
+                        if ($field['required_mode'] === 'production' && $isSandbox) {
+                            continue;
+                        }
+                    }
+                    ?>
                     <tr>
-                        <th><label><?php echo esc_html($field['label'] ?? ''); ?></label></th>
+                        <th>
+                            <label for="jankx_gateway_<?php echo esc_attr($name); ?>_<?php echo esc_attr($field['name']); ?>">
+                                <?php echo esc_html($field['label'] ?? ''); ?>
+                            </label>
+                        </th>
                         <td>
-                            <input type="text"
-                                   name="jankx_payment_gateway_<?php echo esc_attr($name); ?>[<?php echo esc_attr($field['name']); ?>]"
-                                   value="<?php echo esc_attr($config[$field['name']] ?? ''); ?>"
-                                   class="regular-text">
+                            <?php
+                            $inputName = "jankx_payment_gateway_{$name}[{$field['name']}]";
+                            $inputId = "jankx_gateway_{$name}_{$field['name']}";
+                            $value = $config[$field['name']] ?? '';
+                            $type = $field['type'] ?? 'text';
+
+                            switch ($type) {
+                                case 'toggle':
+                                    ?>
+                                    <label class="jankx-toggle-switch">
+                                        <input type="checkbox"
+                                               id="<?php echo esc_attr($inputId); ?>"
+                                               name="<?php echo esc_attr($inputName); ?>"
+                                               value="1"
+                                               <?php checked($value, '1'); ?>>
+                                        <span class="jankx-toggle-slider"></span>
+                                    </label>
+                                    <?php
+                                    if (!empty($field['description'])) {
+                                        echo '<p class="description">' . esc_html($field['description']) . '</p>';
+                                    }
+                                    break;
+
+                                case 'password':
+                                    ?>
+                                    <input type="password"
+                                           id="<?php echo esc_attr($inputId); ?>"
+                                           name="<?php echo esc_attr($inputName); ?>"
+                                           value="<?php echo esc_attr($value); ?>"
+                                           class="regular-text"
+                                           autocomplete="off">
+                                    <button type="button" class="button jankx-toggle-password" data-target="<?php echo esc_attr($inputId); ?>">
+                                        <?php esc_html_e('Show', 'jankx'); ?>
+                                    </button>
+                                    <?php
+                                    if (!empty($field['description'])) {
+                                        echo '<p class="description">' . esc_html($field['description']) . '</p>';
+                                    }
+                                    break;
+
+                                case 'number':
+                                    ?>
+                                    <input type="number"
+                                           id="<?php echo esc_attr($inputId); ?>"
+                                           name="<?php echo esc_attr($inputName); ?>"
+                                           value="<?php echo esc_attr($value); ?>"
+                                           class="small-text"
+                                           <?php if (!empty($field['min'])): ?>min="<?php echo esc_attr($field['min']); ?>"<?php endif; ?>
+                                           <?php if (!empty($field['max'])): ?>max="<?php echo esc_attr($field['max']); ?>"<?php endif; ?>>
+                                    <?php
+                                    if (!empty($field['description'])) {
+                                        echo '<p class="description">' . esc_html($field['description']) . '</p>';
+                                    }
+                                    break;
+
+                                case 'select':
+                                    ?>
+                                    <select id="<?php echo esc_attr($inputId); ?>"
+                                            name="<?php echo esc_attr($inputName); ?>">
+                                        <?php foreach (($field['options'] ?? []) as $optValue => $optLabel): ?>
+                                            <option value="<?php echo esc_attr($optValue); ?>" <?php selected($value, $optValue); ?>>
+                                                <?php echo esc_html($optLabel); ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                    <?php
+                                    if (!empty($field['description'])) {
+                                        echo '<p class="description">' . esc_html($field['description']) . '</p>';
+                                    }
+                                    break;
+
+                                default:
+                                    ?>
+                                    <input type="text"
+                                           id="<?php echo esc_attr($inputId); ?>"
+                                           name="<?php echo esc_attr($inputName); ?>"
+                                           value="<?php echo esc_attr($value); ?>"
+                                           class="regular-text">
+                                    <?php
+                                    if (!empty($field['description'])) {
+                                        echo '<p class="description">' . esc_html($field['description']) . '</p>';
+                                    }
+                            }
+                            ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>
