@@ -109,6 +109,16 @@ class Transaction
         do_action('jankx/payment/transaction_status_changed', $this, $status);
     }
 
+    public function getMeta(string $key, $default = ''): string
+    {
+        return (string) get_post_meta($this->getId(), $key, true);
+    }
+
+    public function updateMeta(string $key, $value): void
+    {
+        update_post_meta($this->getId(), $key, $value);
+    }
+
     public function getTransactionId(): string
     {
         return get_post_meta($this->getId(), '_transaction_id', true);

@@ -33,7 +33,7 @@ class PaymentController
         ]);
 
         register_rest_route('jankx/v1', '/payment/(?P<id>\d+)/process', [
-            'methods' => 'POST',
+            'methods' => ['GET', 'POST'],
             'callback' => [$this, 'processReturn'],
             'permission_callback' => '__return_true',
         ]);
