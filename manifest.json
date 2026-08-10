@@ -13,5 +13,6 @@
     "requirements": {
         "php": ">=8.0"
     },
-    "auto_activate": true
+    "auto_activate": true,
+    "settings_url": "admin.php?page=jankx-payment-settings"
 }
