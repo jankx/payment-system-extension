@@ -24,6 +24,11 @@ class ImapMonitor
         }
     }
 
+    public static function run(): void
+    {
+        (new self())->checkInbox();
+    }
+
     public function addCronSchedule(array $schedules): array
     {
         $schedules['jankx_imap_interval'] = [

@@ -26,6 +26,13 @@ class ApiTracker
         }
     }
 
+    public static function run(): void
+    {
+        $tracker = new self();
+        $tracker->trackPendingTransactions();
+        $tracker->cleanupStaleTransactions();
+    }
+
     public function trackPendingTransactions(): void
     {
         $transactions = Transaction::findPending(50);
