@@ -77,7 +77,17 @@ class PaymentSystemExtension extends AbstractExtension
         // Schedule cron events on activation
         add_action('jankx/extension/activated', [$this, 'scheduleCronEvents']);
 
-        // Gateway registration hook
+        // Gateway registration hook. Extensions are loaded by
+        // ThemeExtensionManager at after_setup_theme priority 15, sorted
+        // alphabetically when they share the same dependency level, so a
+        // synchronous do_action() here would miss gateway extensions whose
+        // directory sorts after this one (e.g. qrviet, zalopay). Defer the
+        // dispatch until every extension has registered its callbacks.
+        add_action('after_setup_theme', [$this, 'dispatchGatewayRegistration'], 20);
+    }
+
+    public function dispatchGatewayRegistration(): void
+    {
         do_action('jankx/payment/register_gateways');
     }
 
