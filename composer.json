@@ -3,9 +3,7 @@
     "description": "Jankx Payment System with Omnipay integration",
     "type": "wordpress-extension",
     "require": {
-        "league/omnipay": "^3.0",
-        "omnipay/paypal": "^3.0",
-        "omnipay/stripe": "^3.0"
+        "league/omnipay": "^3.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",
@@ -23,7 +21,6 @@
         }
     },
     "config": {
-        "vendor-dir": "libs",
         "allow-plugins": {
             "php-http/discovery": false
         }

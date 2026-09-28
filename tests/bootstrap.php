@@ -1,5 +1,8 @@
 <?php
-// Load Composer autoloader
+// Load Composer autoloader (vendor-dir is "libs" for this extension).
+if (file_exists(__DIR__ . '/../libs/autoload.php')) {
+    require_once __DIR__ . '/../libs/autoload.php';
+}
 if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
     require_once __DIR__ . '/../vendor/autoload.php';
 }

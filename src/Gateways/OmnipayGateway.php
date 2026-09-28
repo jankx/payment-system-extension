@@ -3,7 +3,7 @@ namespace Jankx\Extensions\PaymentSystem\Gateways;
 
 use Omnipay\Common\GatewayFactory;
 
-class OmnipayGateway implements GatewayInterface
+class OmnipayGateway extends AbstractGateway
 {
     protected $omnipayGateway;
 
@@ -15,6 +15,21 @@ class OmnipayGateway implements GatewayInterface
     {
         $this->gatewayName = $omnipayName;
         $this->displayName = $displayName ?: $omnipayName;
+        $this->slug = $omnipayName;
+    }
+
+    /**
+     * No bundled brand icon for generic Omnipay gateways – the frontend
+     * falls back to the text display automatically.
+     */
+    protected function getDefaultIcon(): string
+    {
+        return '';
+    }
+
+    protected function getDefaultText(): string
+    {
+        return $this->displayName ?: $this->gatewayName;
     }
 
     public function getName(): string

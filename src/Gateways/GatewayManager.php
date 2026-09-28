@@ -50,6 +50,9 @@ class GatewayManager
         }
         $class = $this->gateways[$name];
         $gateway = new $class();
+        if ($gateway instanceof AbstractGateway) {
+            $gateway->setSlug($name);
+        }
         $config = $this->getConfig($name);
         if (!empty($config)) {
             $gateway->initialize($config);
