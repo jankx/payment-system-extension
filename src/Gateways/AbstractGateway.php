@@ -51,7 +51,7 @@ abstract class AbstractGateway implements GatewayInterface
      */
     protected function defaultDisplayType(): string
     {
-        return self::SHOW_ICON;
+        return self::SHOW_ICON_TEXT;
     }
 
     /**
