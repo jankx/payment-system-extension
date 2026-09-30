@@ -107,7 +107,7 @@ class PaymentSystemExtension extends AbstractExtension
                 'create_posts' => 'do_not_allow',
             ],
             'map_meta_cap' => true,
-            'supports' => ['title', 'custom-fields'],
+            'supports' => ['title'],
         ]);
     }
 
