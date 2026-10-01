@@ -24,8 +24,8 @@ class SettingsPage
     {
         add_submenu_page(
             'jankx-theme-options',
-            __('Payment Settings', 'jankx'),
-            __('Payments', 'jankx'),
+            __('Payment Settings', 'jankx_payment'),
+            __('Payments', 'jankx_payment'),
             'manage_options',
             self::PAGE_SLUG,
             [$this, 'renderPage']
@@ -33,8 +33,8 @@ class SettingsPage
 
         add_submenu_page(
             self::PAGE_SLUG,
-            __('Transactions', 'jankx'),
-            __('Transactions', 'jankx'),
+            __('Transactions', 'jankx_payment'),
+            __('Transactions', 'jankx_payment'),
             'manage_options',
             'jankx-payment-transactions',
             [TransactionListTable::class, 'renderPage']
@@ -68,20 +68,20 @@ class SettingsPage
         $activeTab = $_GET['tab'] ?? 'general';
         ?>
         <div class="wrap">
-            <h1><?php esc_html_e('Payment Settings', 'jankx'); ?></h1>
+            <h1><?php esc_html_e('Payment Settings', 'jankx_payment'); ?></h1>
 
             <nav class="nav-tab-wrapper">
                 <a href="?page=<?php echo esc_attr(self::PAGE_SLUG); ?>&tab=general"
                    class="nav-tab <?php echo $activeTab === 'general' ? 'nav-tab-active' : ''; ?>">
-                    <?php esc_html_e('General', 'jankx'); ?>
+                    <?php esc_html_e('General', 'jankx_payment'); ?>
                 </a>
                 <a href="?page=<?php echo esc_attr(self::PAGE_SLUG); ?>&tab=gateways"
                    class="nav-tab <?php echo $activeTab === 'gateways' ? 'nav-tab-active' : ''; ?>">
-                    <?php esc_html_e('Gateways', 'jankx'); ?>
+                    <?php esc_html_e('Gateways', 'jankx_payment'); ?>
                 </a>
                 <a href="?page=<?php echo esc_attr(self::PAGE_SLUG); ?>&tab=imap"
                    class="nav-tab <?php echo $activeTab === 'imap' ? 'nav-tab-active' : ''; ?>">
-                    <?php esc_html_e('IMAP Monitor', 'jankx'); ?>
+                    <?php esc_html_e('IMAP Monitor', 'jankx_payment'); ?>
                 </a>
             </nav>
 
@@ -112,7 +112,7 @@ class SettingsPage
         ?>
         <table class="form-table">
             <tr>
-                <th><label for="jankx_payment_currency"><?php esc_html_e('Currency', 'jankx'); ?></label></th>
+                <th><label for="jankx_payment_currency"><?php esc_html_e('Currency', 'jankx_payment'); ?></label></th>
                 <td>
                     <select id="jankx_payment_currency" name="jankx_payment_currency">
                         <?php foreach (['VND', 'USD', 'EUR'] as $c): ?>
@@ -124,10 +124,10 @@ class SettingsPage
                 </td>
             </tr>
             <tr>
-                <th><label for="jankx_payment_default_gateway"><?php esc_html_e('Default Gateway', 'jankx'); ?></label></th>
+                <th><label for="jankx_payment_default_gateway"><?php esc_html_e('Default Gateway', 'jankx_payment'); ?></label></th>
                 <td>
                     <select id="jankx_payment_default_gateway" name="jankx_payment_default_gateway">
-                        <option value=""><?php esc_html_e('-- Select --', 'jankx'); ?></option>
+                        <option value=""><?php esc_html_e('-- Select --', 'jankx_payment'); ?></option>
                         <?php foreach ($this->gatewayManager->getGatewayNames() as $name): ?>
                             <option value="<?php echo esc_attr($name); ?>" <?php selected($defaultGateway, $name); ?>>
                                 <?php echo esc_html($name); ?>
@@ -213,7 +213,7 @@ class SettingsPage
                                            class="regular-text"
                                            autocomplete="off">
                                     <button type="button" class="button jankx-toggle-password" data-target="<?php echo esc_attr($inputId); ?>">
-                                        <?php esc_html_e('Show', 'jankx'); ?>
+                                        <?php esc_html_e('Show', 'jankx_payment'); ?>
                                     </button>
                                     <?php
                                     if (!empty($field['description'])) {
@@ -280,7 +280,7 @@ class SettingsPage
         ?>
         <table class="form-table">
             <tr>
-                <th><label for="jankx_payment_imap_host"><?php esc_html_e('IMAP Host', 'jankx'); ?></label></th>
+                <th><label for="jankx_payment_imap_host"><?php esc_html_e('IMAP Host', 'jankx_payment'); ?></label></th>
                 <td>
                     <input type="text" id="jankx_payment_imap_host" name="jankx_payment_imap_host"
                            value="<?php echo esc_attr(get_option('jankx_payment_imap_host', '')); ?>"
@@ -288,7 +288,7 @@ class SettingsPage
                 </td>
             </tr>
             <tr>
-                <th><label for="jankx_payment_imap_port"><?php esc_html_e('Port', 'jankx'); ?></label></th>
+                <th><label for="jankx_payment_imap_port"><?php esc_html_e('Port', 'jankx_payment'); ?></label></th>
                 <td>
                     <input type="number" id="jankx_payment_imap_port" name="jankx_payment_imap_port"
                            value="<?php echo esc_attr(get_option('jankx_payment_imap_port', 993)); ?>"
@@ -296,7 +296,7 @@ class SettingsPage
                 </td>
             </tr>
             <tr>
-                <th><label for="jankx_payment_imap_username"><?php esc_html_e('Username', 'jankx'); ?></label></th>
+                <th><label for="jankx_payment_imap_username"><?php esc_html_e('Username', 'jankx_payment'); ?></label></th>
                 <td>
                     <input type="text" id="jankx_payment_imap_username" name="jankx_payment_imap_username"
                            value="<?php echo esc_attr(get_option('jankx_payment_imap_username', '')); ?>"
@@ -304,7 +304,7 @@ class SettingsPage
                 </td>
             </tr>
             <tr>
-                <th><label for="jankx_payment_imap_password"><?php esc_html_e('Password', 'jankx'); ?></label></th>
+                <th><label for="jankx_payment_imap_password"><?php esc_html_e('Password', 'jankx_payment'); ?></label></th>
                 <td>
                     <input type="password" id="jankx_payment_imap_password" name="jankx_payment_imap_password"
                            value="<?php echo esc_attr(get_option('jankx_payment_imap_password', '')); ?>"
@@ -312,14 +312,14 @@ class SettingsPage
                 </td>
             </tr>
             <tr>
-                <th><label for="jankx_payment_imap_ssl"><?php esc_html_e('Use SSL', 'jankx'); ?></label></th>
+                <th><label for="jankx_payment_imap_ssl"><?php esc_html_e('Use SSL', 'jankx_payment'); ?></label></th>
                 <td>
                     <input type="checkbox" id="jankx_payment_imap_ssl" name="jankx_payment_imap_ssl" value="1"
                         <?php checked(get_option('jankx_payment_imap_ssl', true)); ?>>
                 </td>
             </tr>
             <tr>
-                <th><label for="jankx_payment_imap_since_days"><?php esc_html_e('Lookback Days', 'jankx'); ?></label></th>
+                <th><label for="jankx_payment_imap_since_days"><?php esc_html_e('Lookback Days', 'jankx_payment'); ?></label></th>
                 <td>
                     <input type="number" id="jankx_payment_imap_since_days" name="jankx_payment_imap_since_days"
                            value="<?php echo esc_attr(get_option('jankx_payment_imap_since_days', 7)); ?>"

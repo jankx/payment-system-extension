@@ -25,10 +25,10 @@ class TransactionListTable extends WP_List_Table
         $table->prepare_items();
         ?>
         <div class="wrap">
-            <h1><?php esc_html_e('Transactions', 'jankx'); ?></h1>
+            <h1><?php esc_html_e('Transactions', 'jankx_payment'); ?></h1>
             <form method="get">
                 <input type="hidden" name="page" value="jankx-payment-transactions">
-                <?php $table->search_box(__('Search', 'jankx'), 'transaction'); ?>
+                <?php $table->search_box(__('Search', 'jankx_payment'), 'transaction'); ?>
                 <?php $table->display(); ?>
             </form>
         </div>
@@ -39,14 +39,14 @@ class TransactionListTable extends WP_List_Table
     {
         return [
             'cb' => '<input type="checkbox" />',
-            'id' => __('ID', 'jankx'),
-            'gateway' => __('Gateway', 'jankx'),
-            'transaction_id' => __('Transaction ID', 'jankx'),
-            'amount' => __('Amount', 'jankx'),
-            'status' => __('Status', 'jankx'),
-            'customer_email' => __('Customer', 'jankx'),
-            'tracking_count' => __('Tracking', 'jankx'),
-            'date' => __('Date', 'jankx'),
+            'id' => __('ID', 'jankx_payment'),
+            'gateway' => __('Gateway', 'jankx_payment'),
+            'transaction_id' => __('Transaction ID', 'jankx_payment'),
+            'amount' => __('Amount', 'jankx_payment'),
+            'status' => __('Status', 'jankx_payment'),
+            'customer_email' => __('Customer', 'jankx_payment'),
+            'tracking_count' => __('Tracking', 'jankx_payment'),
+            'date' => __('Date', 'jankx_payment'),
         ];
     }
 

@@ -1,0 +1,239 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-01T08:36:01+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: jankx_payment\n"
+
+#: PaymentSystemExtension.php:135
+#: src/Admin/SettingsPage.php:36
+#: src/Admin/SettingsPage.php:37
+#: src/Admin/TransactionListTable.php:28
+#: src/Models/Transaction.php:37
+msgid "Transactions"
+msgstr ""
+
+#: PaymentSystemExtension.php:136
+#: src/Models/Transaction.php:38
+msgid "Transaction"
+msgstr ""
+
+#: PaymentSystemExtension.php:155
+msgid "Payment Tracker (Hourly)"
+msgstr ""
+
+#: PaymentSystemExtension.php:159
+msgid "IMAP Monitor (5 Minutes)"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:27
+#: src/Admin/SettingsPage.php:71
+msgid "Payment Settings"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:28
+#: src/Models/Transaction.php:39
+msgid "Payments"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:76
+msgid "General"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:80
+msgid "Gateways"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:84
+msgid "IMAP Monitor"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:115
+msgid "Currency"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:127
+msgid "Default Gateway"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:130
+msgid "-- Select --"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:216
+msgid "Show"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:283
+msgid "IMAP Host"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:291
+msgid "Port"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:299
+msgid "Username"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:307
+msgid "Password"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:315
+msgid "Use SSL"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:322
+msgid "Lookback Days"
+msgstr ""
+
+#: src/Admin/TransactionListTable.php:31
+msgid "Search"
+msgstr ""
+
+#: src/Admin/TransactionListTable.php:42
+msgid "ID"
+msgstr ""
+
+#: src/Admin/TransactionListTable.php:43
+msgid "Gateway"
+msgstr ""
+
+#: src/Admin/TransactionListTable.php:44
+msgid "Transaction ID"
+msgstr ""
+
+#: src/Admin/TransactionListTable.php:45
+msgid "Amount"
+msgstr ""
+
+#: src/Admin/TransactionListTable.php:46
+msgid "Status"
+msgstr ""
+
+#: src/Admin/TransactionListTable.php:47
+msgid "Customer"
+msgstr ""
+
+#: src/Admin/TransactionListTable.php:48
+msgid "Tracking"
+msgstr ""
+
+#: src/Admin/TransactionListTable.php:49
+msgid "Date"
+msgstr ""
+
+#: src/Gateways/GatewayManager.php:163
+msgid "Sandbox"
+msgstr ""
+
+#: src/Gateways/GatewayManager.php:164
+msgid "Production"
+msgstr ""
+
+#: src/Gateways/OmnipayGateway.php:145
+msgid "Sandbox Mode"
+msgstr ""
+
+#: src/Gateways/OmnipayGateway.php:147
+msgid "Enable sandbox/test mode for this gateway."
+msgstr ""
+
+#: src/Gateways/OmnipayGateway.php:151
+msgid "Sandbox API Key"
+msgstr ""
+
+#: src/Gateways/OmnipayGateway.php:153
+msgid "API key for sandbox environment."
+msgstr ""
+
+#: src/Gateways/OmnipayGateway.php:158
+msgid "Sandbox API Secret"
+msgstr ""
+
+#: src/Gateways/OmnipayGateway.php:160
+msgid "API secret for sandbox environment."
+msgstr ""
+
+#: src/Gateways/OmnipayGateway.php:165
+msgid "Production API Key"
+msgstr ""
+
+#: src/Gateways/OmnipayGateway.php:167
+msgid "API key for production environment."
+msgstr ""
+
+#: src/Gateways/OmnipayGateway.php:172
+msgid "Production API Secret"
+msgstr ""
+
+#: src/Gateways/OmnipayGateway.php:174
+msgid "API secret for production environment."
+msgstr ""
+
+#: src/Imap/ImapMonitor.php:36
+msgid "Every 5 minutes (IMAP)"
+msgstr ""
+
+#. translators: %s: email subject of the payment notification
+#: src/Imap/ImapMonitor.php:141
+#, php-format
+msgid "IMAP: %s"
+msgstr ""
+
+#: src/Models/Transaction.php:40
+msgid "All Transactions"
+msgstr ""
+
+#: src/Models/Transaction.php:41
+msgid "Edit Transaction"
+msgstr ""
+
+#: src/Models/Transaction.php:42
+msgid "View Transaction"
+msgstr ""
+
+#. translators: %s: unique transaction reference
+#: src/Models/Transaction.php:58
+#, php-format
+msgid "Payment %s"
+msgstr ""
+
+#: src/Rest/PaymentController.php:76
+msgid "Gateway and amount are required"
+msgstr ""
+
+#. translators: %s: requested gateway slug
+#: src/Rest/PaymentController.php:85
+#, php-format
+msgid "Gateway %s not available"
+msgstr ""
+
+#. translators: %s: order ID or random identifier
+#: src/Rest/PaymentController.php:93
+#, php-format
+msgid "Order #%s"
+msgstr ""
+
+#. translators: %d: transaction ID
+#: src/Rest/PaymentController.php:111
+#, php-format
+msgid "Payment #%d"
+msgstr ""
+
+#: src/Rest/PaymentController.php:140
+#: src/Rest/PaymentController.php:158
+msgid "Transaction not found"
+msgstr ""
+
+#: src/Rest/PaymentController.php:166
+msgid "Gateway not available"
+msgstr ""

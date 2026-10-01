@@ -73,7 +73,7 @@ class PaymentController
         if (!$gatewayName || !$amount) {
             return new \WP_REST_Response([
                 'success' => false,
-                'message' => __('Gateway and amount are required', 'jankx'),
+                'message' => __('Gateway and amount are required', 'jankx_payment'),
             ], 400);
         }
 
@@ -81,14 +81,16 @@ class PaymentController
         if (!$gateway) {
             return new \WP_REST_Response([
                 'success' => false,
-                'message' => sprintf(__('Gateway %s not available', 'jankx'), $gatewayName),
+                /* translators: %s: requested gateway slug */
+                'message' => sprintf(__('Gateway %s not available', 'jankx_payment'), $gatewayName),
             ], 400);
         }
 
         $currentUser = wp_get_current_user();
 
         $transaction = Transaction::create([
-            'title' => sprintf(__('Order #%s', 'jankx'), $orderId ?: uniqid()),
+            /* translators: %s: order ID or random identifier */
+            'title' => sprintf(__('Order #%s', 'jankx_payment'), $orderId ?: uniqid()),
             'gateway' => $gatewayName,
             'amount' => $amount,
             'currency' => $currency,
@@ -105,7 +107,8 @@ class PaymentController
                 'transactionId' => $transaction->getId(),
                 'returnUrl' => $returnUrl ?: rest_url("jankx/v1/payment/{$transaction->getId()}/process"),
                 'cancelUrl' => $cancelUrl ?: home_url(),
-                'description' => sprintf(__('Payment #%d', 'jankx'), $transaction->getId()),
+                /* translators: %d: transaction ID */
+                'description' => sprintf(__('Payment #%d', 'jankx_payment'), $transaction->getId()),
             ]);
 
             if (!empty($result['transactionId'])) {
@@ -134,7 +137,7 @@ class PaymentController
         if (!$transaction->getId()) {
             return new \WP_REST_Response([
                 'success' => false,
-                'message' => __('Transaction not found', 'jankx'),
+                'message' => __('Transaction not found', 'jankx_payment'),
             ], 404);
         }
 
@@ -152,7 +155,7 @@ class PaymentController
         if (!$transaction->getId()) {
             return new \WP_REST_Response([
                 'success' => false,
-                'message' => __('Transaction not found', 'jankx'),
+                'message' => __('Transaction not found', 'jankx_payment'),
             ], 404);
         }
 
@@ -160,7 +163,7 @@ class PaymentController
         if (!$gateway) {
             return new \WP_REST_Response([
                 'success' => false,
-                'message' => __('Gateway not available', 'jankx'),
+                'message' => __('Gateway not available', 'jankx_payment'),
             ], 400);
         }
 

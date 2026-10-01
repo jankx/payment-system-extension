@@ -12,6 +12,8 @@ use Jankx\Extensions\PaymentSystem\Models\Transaction;
 
 class PaymentSystemExtension extends AbstractExtension
 {
+    public const TEXT_DOMAIN = 'jankx_payment';
+
     protected static $instance;
 
     public function __construct()
@@ -52,6 +54,9 @@ class PaymentSystemExtension extends AbstractExtension
 
     public function register_hooks(): void
     {
+        // Load this extension's own translations.
+        $this->load_textdomain();
+
         // CPT registration
         add_action('init', [$this, 'registerTransactionCpt']);
 
@@ -91,12 +96,44 @@ class PaymentSystemExtension extends AbstractExtension
         do_action('jankx/payment/register_gateways');
     }
 
+    /**
+     * Load the extension's own translations from the bundled languages
+     * directory, following the same pattern as the other Jankx extensions.
+     */
+    protected function load_textdomain(): void
+    {
+        /** @var \WP_Textdomain_Registry $wp_textdomain_registry */
+        global $wp_textdomain_registry;
+
+        $locale = determine_locale();
+        $dir    = __DIR__ . '/languages';
+
+        if ($wp_textdomain_registry instanceof \WP_Textdomain_Registry) {
+            $wp_textdomain_registry->set_custom_path(self::TEXT_DOMAIN, $dir);
+        }
+
+        $mo = $dir . '/' . self::TEXT_DOMAIN . '-' . $locale . '.mo';
+        if (!is_readable($mo)) {
+            return;
+        }
+
+        $loader = static function () use ($mo) {
+            load_textdomain(self::TEXT_DOMAIN, $mo);
+        };
+
+        if (did_action('after_setup_theme')) {
+            $loader();
+        } else {
+            add_action('after_setup_theme', $loader, 5);
+        }
+    }
+
     public function registerTransactionCpt(): void
     {
         register_post_type(Transaction::POST_TYPE, [
             'labels' => [
-                'name' => __('Transactions', 'jankx'),
-                'singular_name' => __('Transaction', 'jankx'),
+                'name' => __('Transactions', 'jankx_payment'),
+                'singular_name' => __('Transaction', 'jankx_payment'),
             ],
             'public' => false,
             'show_ui' => false,
@@ -115,11 +152,11 @@ class PaymentSystemExtension extends AbstractExtension
     {
         $schedules['jankx_payment_hourly'] = [
             'interval' => HOUR_IN_SECONDS,
-            'display' => __('Payment Tracker (Hourly)', 'jankx'),
+            'display' => __('Payment Tracker (Hourly)', 'jankx_payment'),
         ];
         $schedules['jankx_payment_five_minutes'] = [
             'interval' => 5 * MINUTE_IN_SECONDS,
-            'display' => __('IMAP Monitor (5 Minutes)', 'jankx'),
+            'display' => __('IMAP Monitor (5 Minutes)', 'jankx_payment'),
         ];
         return $schedules;
     }

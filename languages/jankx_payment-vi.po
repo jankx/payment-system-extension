@@ -1,0 +1,236 @@
+# Vietnamese translation for the Jankx Payment System extension.
+# This file is distributed under the same license as the plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Payment System 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/jankx/payment-system-extension/issues\n"
+"PO-Revision-Date: 2026-10-01 15:36+0700\n"
+"Last-Translator: Jankx <support@jankx.vn>\n"
+"Language-Team: Vietnamese <vi@jankx.vn>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: vi\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Domain: jankx_payment\n"
+
+#: PaymentSystemExtension.php:135
+#: src/Admin/SettingsPage.php:36
+#: src/Admin/SettingsPage.php:37
+#: src/Admin/TransactionListTable.php:28
+#: src/Models/Transaction.php:37
+msgid "Transactions"
+msgstr "Giao dịch"
+
+#: PaymentSystemExtension.php:136
+#: src/Models/Transaction.php:38
+msgid "Transaction"
+msgstr "Giao dịch"
+
+#: PaymentSystemExtension.php:135
+msgid "Payment Tracker (Hourly)"
+msgstr "Theo dõi thanh toán (mỗi giờ)"
+
+#: PaymentSystemExtension.php:138
+msgid "IMAP Monitor (5 Minutes)"
+msgstr "Giám sát IMAP (mỗi 5 phút)"
+
+#: src/Admin/SettingsPage.php:27
+msgid "Payment Settings"
+msgstr "Cài đặt thanh toán"
+
+#: src/Admin/SettingsPage.php:28
+#: src/Models/Transaction.php:39
+msgid "Payments"
+msgstr "Thanh toán"
+
+#: src/Admin/SettingsPage.php:36
+msgid "General"
+msgstr "Chung"
+
+#: src/Admin/SettingsPage.php:37
+msgid "Gateways"
+msgstr "Cổng thanh toán"
+
+#: src/Admin/SettingsPage.php:39
+#: src/Models/Transaction.php:37
+msgid "IMAP Monitor"
+msgstr "Giám sát IMAP"
+
+#: src/Admin/SettingsPage.php:115
+msgid "Currency"
+msgstr "Tiền tệ"
+
+#: src/Admin/SettingsPage.php:127
+msgid "Default Gateway"
+msgstr "Cổng mặc định"
+
+#: src/Admin/SettingsPage.php:130
+msgid "-- Select --"
+msgstr "-- Chọn --"
+
+#: src/Admin/SettingsPage.php:216
+msgid "Show"
+msgstr "Hiển thị"
+
+#: src/Admin/SettingsPage.php:283
+msgid "IMAP Host"
+msgstr "Máy chủ IMAP"
+
+#: src/Admin/SettingsPage.php:291
+msgid "Port"
+msgstr "Cổng"
+
+#: src/Admin/SettingsPage.php:299
+msgid "Username"
+msgstr "Tên đăng nhập"
+
+#: src/Admin/SettingsPage.php:307
+msgid "Password"
+msgstr "Mật khẩu"
+
+#: src/Admin/SettingsPage.php:315
+msgid "Use SSL"
+msgstr "Dùng SSL"
+
+#: src/Admin/SettingsPage.php:322
+msgid "Lookback Days"
+msgstr "Số ngày tra cứu"
+
+#: src/Admin/TransactionListTable.php:31
+msgid "Search"
+msgstr "Tìm kiếm"
+
+#: src/Admin/TransactionListTable.php:42
+msgid "ID"
+msgstr "ID"
+
+#: src/Admin/TransactionListTable.php:43
+msgid "Gateway"
+msgstr "Cổng"
+
+#: src/Admin/TransactionListTable.php:44
+msgid "Transaction ID"
+msgstr "Mã giao dịch"
+
+#: src/Admin/TransactionListTable.php:45
+msgid "Amount"
+msgstr "Số tiền"
+
+#: src/Admin/TransactionListTable.php:46
+msgid "Status"
+msgstr "Trạng thái"
+
+#: src/Admin/TransactionListTable.php:47
+msgid "Customer"
+msgstr "Khách hàng"
+
+#: src/Admin/TransactionListTable.php:48
+msgid "Tracking"
+msgstr "Lượt theo dõi"
+
+#: src/Admin/TransactionListTable.php:49
+msgid "Date"
+msgstr "Ngày"
+
+#: src/Gateways/GatewayManager.php:163
+msgid "Sandbox"
+msgstr "Môi trường thử nghiệm"
+
+#: src/Gateways/GatewayManager.php:164
+msgid "Production"
+msgstr "Môi trường thật"
+
+#: src/Gateways/OmnipayGateway.php:145
+msgid "Sandbox Mode"
+msgstr "Chế độ thử nghiệm"
+
+#: src/Gateways/OmnipayGateway.php:147
+msgid "Enable sandbox/test mode for this gateway."
+msgstr "Bật chế độ thử nghiệm cho cổng thanh toán này."
+
+#: src/Gateways/OmnipayGateway.php:151
+msgid "Sandbox API Key"
+msgstr "API Key môi trường thử nghiệm"
+
+#: src/Gateways/OmnipayGateway.php:153
+msgid "API key for sandbox environment."
+msgstr "API key cho môi trường thử nghiệm."
+
+#: src/Gateways/OmnipayGateway.php:158
+msgid "Sandbox API Secret"
+msgstr "API Secret môi trường thử nghiệm"
+
+#: src/Gateways/OmnipayGateway.php:160
+msgid "API secret for sandbox environment."
+msgstr "API secret cho môi trường thử nghiệm."
+
+#: src/Gateways/OmnipayGateway.php:165
+msgid "Production API Key"
+msgstr "API Key môi trường thật"
+
+#: src/Gateways/OmnipayGateway.php:167
+msgid "API key for production environment."
+msgstr "API key cho môi trường thật."
+
+#: src/Gateways/OmnipayGateway.php:172
+msgid "Production API Secret"
+msgstr "API Secret môi trường thật"
+
+#: src/Gateways/OmnipayGateway.php:174
+msgid "API secret for production environment."
+msgstr "API secret cho môi trường thật."
+
+#: src/Imap/ImapMonitor.php:36
+msgid "Every 5 minutes (IMAP)"
+msgstr "Mỗi 5 phút (IMAP)"
+
+#. translators: %s: email subject of the payment notification
+#: src/Imap/ImapMonitor.php:141
+msgid "IMAP: %s"
+msgstr "IMAP: %s"
+
+#: src/Models/Transaction.php:40
+msgid "All Transactions"
+msgstr "Tất cả giao dịch"
+
+#: src/Models/Transaction.php:41
+msgid "Edit Transaction"
+msgstr "Sửa giao dịch"
+
+#: src/Models/Transaction.php:42
+msgid "View Transaction"
+msgstr "Xem giao dịch"
+
+#. translators: %s: unique transaction reference
+#: src/Models/Transaction.php:58
+msgid "Payment %s"
+msgstr "Thanh toán %s"
+
+#: src/Rest/PaymentController.php:76
+msgid "Gateway and amount are required"
+msgstr "Cần nhập cổng thanh toán và số tiền"
+
+#. translators: %s: requested gateway slug
+#: src/Rest/PaymentController.php:85
+msgid "Gateway %s not available"
+msgstr "Cổng thanh toán %s không khả dụng"
+
+#. translators: %s: order ID or random identifier
+#: src/Rest/PaymentController.php:92
+msgid "Order #%s"
+msgstr "Đơn hàng #%s"
+
+#. translators: %d: transaction ID
+#: src/Rest/PaymentController.php:109
+msgid "Payment #%d"
+msgstr "Thanh toán #%d"
+
+#: src/Rest/PaymentController.php:137
+#: src/Rest/PaymentController.php:155
+msgid "Transaction not found"
+msgstr "Không tìm thấy giao dịch"
+
+#: src/Rest/PaymentController.php:163
+msgid "Gateway not available"
+msgstr "Cổng thanh toán không khả dụng"

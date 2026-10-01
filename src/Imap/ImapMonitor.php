@@ -33,7 +33,7 @@ class ImapMonitor
     {
         $schedules['jankx_imap_interval'] = [
             'interval' => apply_filters('jankx/payment/imap/interval', 300),
-            'display' => __('Every 5 minutes (IMAP)', 'jankx'),
+            'display' => __('Every 5 minutes (IMAP)', 'jankx_payment'),
         ];
         return $schedules;
     }
@@ -137,7 +137,8 @@ class ImapMonitor
         if (!$transaction) {
             $amount = isset($parsed['amount']) ? $this->parser->extractAmount($parsed['amount']) : 0;
             $transaction = Transaction::create([
-                'title' => sprintf(__('IMAP: %s', 'jankx'), $emailSubject),
+                /* translators: %s: email subject of the payment notification */
+                'title' => sprintf(__('IMAP: %s', 'jankx_payment'), $emailSubject),
                 'gateway' => 'email_' . ($parsed['parser'] ?? 'unknown'),
                 'amount' => $amount,
                 'currency' => $this->parser->extractCurrency($body),

@@ -160,8 +160,8 @@ class GatewayManager
             $modes[$name] = [
                 'is_sandbox' => $this->isSandboxMode($name),
                 'label' => $this->isSandboxMode($name)
-                    ? __('Sandbox', 'jankx')
-                    : __('Production', 'jankx'),
+                    ? __('Sandbox', 'jankx_payment')
+                    : __('Production', 'jankx_payment'),
             ];
         }
         return $modes;

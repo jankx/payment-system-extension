@@ -34,12 +34,12 @@ class Transaction
 
         register_post_type(self::POST_TYPE, [
             'labels' => [
-                'name' => __('Transactions', 'jankx'),
-                'singular_name' => __('Transaction', 'jankx'),
-                'menu_name' => __('Payments', 'jankx'),
-                'all_items' => __('All Transactions', 'jankx'),
-                'edit_item' => __('Edit Transaction', 'jankx'),
-                'view_item' => __('View Transaction', 'jankx'),
+                'name' => __('Transactions', 'jankx_payment'),
+                'singular_name' => __('Transaction', 'jankx_payment'),
+                'menu_name' => __('Payments', 'jankx_payment'),
+                'all_items' => __('All Transactions', 'jankx_payment'),
+                'edit_item' => __('Edit Transaction', 'jankx_payment'),
+                'view_item' => __('View Transaction', 'jankx_payment'),
             ],
             'public' => false,
             'show_ui' => true,
@@ -54,7 +54,8 @@ class Transaction
     {
         $postId = wp_insert_post([
             'post_type' => self::POST_TYPE,
-            'post_title' => $data['title'] ?? sprintf(__('Payment %s', 'jankx'), uniqid()),
+            /* translators: %s: unique transaction reference */
+            'post_title' => $data['title'] ?? sprintf(__('Payment %s', 'jankx_payment'), uniqid()),
             'post_status' => 'publish',
             'meta_input' => [
                 '_gateway' => $data['gateway'] ?? '',
